@@ -35,14 +35,34 @@ Now, the first thing you need to do is to create a Discord Bot account.
 
 Last but not least, do remember to invite your bot into your server in order to "talk" to it.
 
-# Initialize your project
+# Set up your project
 1. Create your project folder and `package.json`.
 ```bash
 mkdir <your-project-name>
 cd <your-project-name>
-npm init -y
+npm init
 ```
+Ensure that the `main` in your `package.json` is set to `index.js`.
+
 2. Install the relevant dependencies now.
 ```bash
 npm i eris yuuko dotenv
 ```
+Should you be using a version of NPM below 4.5 *(you shouldn't)*, run the following instead:
+```bash
+npm i eris yuuko dotenv --save
+```
+4. Create a `.env` and `index.js` file, and a `commands` and `events` folder.
+
+### Optional Steps
+- Install `bufferutil`, `zlib-sync` or `abalabahaha/erlpack`
+- Install a linter and create the config file
+ ```bash
+ npm i eslint -D
+ # -D is short for --save-dev
+ npx eslint --init
+ # Just answer the prompts
+ ```
+That's about the end of setting up your project!
+
+# Now, let's start coding!
