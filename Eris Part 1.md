@@ -20,3 +20,29 @@ D.js covers 100% of the Discord API while Eris does not. However, covering 100% 
 D.js has a larger memory footprint, and when the bot is in many servers, it starts having performance issues. That is why many large bots, like [Dank Memer](https://dankmemer.lol/) (The 4th largest Discord Bot), are made using Eris.
 
 However, there are some packages on NPM that can help with the functions that Eris lacks, for example, [Eris Additions](https://www.npmjs.com/package/eris-additions). There are even command handlers for Eris on NPM, like [Yuuko](https://www.npmjs.com/package/yuuko) and [Eris Boiler](https://www.npmjs.com/package/eris-boiler). For developers moving from D.js to Eris, there is [Chariot.js](https://www.npmjs.com/package/chariot.js).
+
+# Getting started
+Now, without further delay, let us dive into the magical world of Discord Bots.
+
+# Creating a Discord Bot account
+Now, the first thing you need to do is to create a Discord Bot account.
+1. Head over to the [Discord Applications page](https://discord.com/developers/applications).
+2. Click the `New Application` button on the top right corner.
+3. Now name your application (You can change it afterwards). Enter the name and hit `Create`.
+4. Now that you have created the application, now you need to create the bot account. Head over to `Bot` and click on `Add Bot`, and then click `Click on Yes, do it!`.
+5. Under the `TOKEN` section, click `Copy`.
+6. Awesome! Now you have your Bot Token!
+
+Last but not least, do remember to invite your bot into your server in order to "talk" to it.
+
+# Initialize your project
+1. Create your project folder and `package.json`.
+```bash
+mkdir <your-project-name>
+cd <your-project-name>
+npm init -y
+```
+2. Install the relevant dependencies now.
+```bash
+npm i eris yuuko dotenv
+```
