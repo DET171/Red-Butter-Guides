@@ -217,7 +217,7 @@ module.exports = new EventListener('ready', ({client}) => {
 
 ## You first command
 Now, create a file in `./commands`.
-What command should we craete, then?
+What command should we create, then?
 Let's look to our dear friend Dank Memer for some inspiration:
 ![](https://i.ibb.co/r700Hs1/2021-07-19.png)
 
