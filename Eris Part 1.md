@@ -1,6 +1,13 @@
 # Introduction
 Hello there, this sentence will mark the beginning of my first ever article released to the public. In this article, I will be writing how to build a Discord bot with [Eris](https://abal.moe/Eris/) and [Yuuko](https://eritbh.me/yuuko/).
 
+In this tutorial, I will be using the following format for the code:
+```js
++ // This line should be added to your code
+- // This line should be removed from your code
+
+```
+
 # Prerequisites
 - A basic knowledge of JavaScript
 - Node.js (v12) and NPM (v7) installed on your machine
@@ -78,13 +85,15 @@ Your project tree should look something like this now:
 ```
 
 # Now, let's start coding!
+Note: The final code will be included at the end :)
+
 First, open the project in you favourite text editor, and fill in the `.env` file with the following:
 ```
 TOKEN=<your-token-here>
 PREFIX=<your-bot-prefix>
 ```
 Of course, replace `<your-token-here>` with the Bot token you obtained earlier, and `<your-bot-prefix>` with your bot prefix.
-
+If you do not understand `dotenv` and `.env` files,
 Now that we are no longer concerned with the bot configurations, let us write our basic bot code!
 Head over to your `index.js` file, and insert the following at the top to require the packages.
 ```js
@@ -92,3 +101,14 @@ const { Client } = require('yuuko'); // Imports the Client constructor
 const path = require('path'); // For joining paths
 require('dotenv').config(); // Imports the variables in the `.env` file
 ```
+As you can see, we have imported the `Client` constructor from `Yuuko` but not the `Command` constructor. Why? We will be putting the commands in `js` files in the `command` folder, so our `index.js` file will not be crowded with commands. Neat!
+
+We can create a client with the following:
+```js
+const bot = new Client({
+	token: process.env.TOKEN,
+	prefix: process.env.PREFIX,
+	ignoreBots: true,
+});
+```
+The `ignoreBots: true` in the code tells our bot to ignore all messages sent by other bots.
