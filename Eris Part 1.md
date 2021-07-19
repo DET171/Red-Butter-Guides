@@ -64,5 +64,31 @@ npm i eris yuuko dotenv --save
  # Just answer the prompts
  ```
 That's about the end of setting up your project!
+Your project tree should look something like this now:
+```
+|   .env
+│   index.js
+│   package-lock.json
+│   package.json
+│
+├───commands
+├───events
+└───node_modules
+    │   ...
+```
 
 # Now, let's start coding!
+First, open the project in you favourite text editor, and fill in the `.env` file with the following:
+```
+TOKEN=<your-token-here>
+PREFIX=<your-bot-prefix>
+```
+Of course, replace `<your-token-here>` with the Bot token you obtained earlier, and `<your-bot-prefix>` with your bot prefix.
+
+Now that we are no longer concerned with the bot configurations, let us write our basic bot code!
+Head over to your `index.js` file, and insert the following at the top to require the packages.
+```js
+const { Client } = require('yuuko'); // Imports the Client constructor
+const path = require('path'); // For joining paths
+require('dotenv').config(); // Imports the variables in the `.env` file
+```
