@@ -59,6 +59,10 @@ Should you be using a version of NPM below 4.5 *(you shouldn't)*, run the follow
 ```bash
 npm i eris yuuko dotenv --save
 ```
+Install `nodemon` as well.
+```bash
+npm i -g nodemon
+```
 4. Create a `.env` and `index.js` file, and a `commands` and `events` folder.
 
 ### Optional Steps
@@ -112,3 +116,122 @@ const bot = new Client({
 });
 ```
 The `ignoreBots: true` in the code tells our bot to ignore all messages sent by other bots.
+If you want to allow commands to be used in only servers, you can set it using the following:
+```js
+bot.globalCommandRequirements = {
+	guildOnly: true,
+};
+```
+However, if you want to allow commands to be used in only DMs, you can set it using the following:
+```js
+bot.globalCommandRequirements = {
+	dmOnly: true,
+};
+```
+To pass context/variables to the commands in other files, you can set in `index.js` by doing
+```js
+bot.extendContext({
+  variableOne: 'Variable number 1!',
+});
+```
+The variables set here will be passed to commands and event listeners under `context.<variable-name>.`
+
+Now get you bot to scan the directories and import any event listeners and commands, and lastly, connect to Discord:
+```js
+bot
+	.addDir(path.join(__dirname, 'commands'))
+	.addDir(path.join(__dirname, 'events'))
+	.connect();
+```
+
+
+Your `index.js` file should now look something like this:
+```js
+const { Client } = require('yuuko');
+const path = require('path');
+const dotenv = require('dotenv');
+var env = dotenv.config();
+env = process.env;
+
+const bot = new Client({
+	token: env.TOKEN,
+	prefix: env.PREFIX,
+	ignoreBots: true,
+});
+
+bot.extendContext({
+	variableOne: 'Variable number 1!',
+});
+bot.editStatus('dnd'); // edits bot status
+
+bot.on('error', (err) => {
+	console.error(err);
+});
+
+bot.globalCommandRequirements = {
+	guildOnly: true,
+};
+
+bot
+	.addDir(path.join(__dirname, 'commands'))
+	.addDir(path.join(__dirname, 'events'))
+	.connect();
+```
+
+## The `Ready` event
+Create a file in `./events` and name it `ready.js`.
+Require the EventListener:
+```js
+const { EventListener } = require('yuuko');
+```
+and create an event listener:
+```js
+module.exports = new EventListener('ready', (context) => {
+  // context.client = bot
+  console.log(`Logged in as ${context.client.user.usename}`);
+});
+```
+Alternatively, you may also do:
+```js
+module.exports = new EventListener('ready', ({client}) => {
+  // client = bot
+  console.log(`Logged in as ${client.user.usename}`);
+});
+```
+instead of importing the whole `context`. You may be thinking:
+'Hey, I didn't define the `client` variable in `bot.extendContext({})`! Why can it be used here?'
+Well, Yuuko automatically sets the `client` as the `bot`, so you do not need to worry about it!
+
+Now, start your project:
+```bash
+nodemon .
+```
+Your final `ready.js` code:
+```js
+const { EventListener } = require('yuuko');
+module.exports = new EventListener('ready', ({client}) => {
+  // client = bot
+  console.log(`Logged in as ${client.user.usename}`);
+});
+```
+
+## You first command
+Now, create a file in `./commands`.
+What command should we craete, then?
+Let's look to our dear friend Dank Memer for some inspiration:
+![](https://i.ibb.co/r700Hs1/2021-07-19.png)
+
+There! Let's make this command then. Name the file you created `owo.js`.
+
+Open it, and put the following code inside:
+```js
+const { Command } = require('yuuko');
+module.exports = new Command('owo', (message, args, context) => {
+  message.channel.createMessage('OwO');
+});
+```
+and you're done! Your bot should now respond with 'OwO' when you type in the command. It's that easy!
+
+# Conclusion
+Eris is a great library to build Discord Bots, as it is lightweight and fast! I will be teaching you how to make a `meme` command in my following post. Stay tuned!
+(PS You might have to wait quite a while as I have a lot of homework, and have upcoming National Exams to take.)
