@@ -235,3 +235,21 @@ and you're done! Your bot should now respond with 'OwO' when you type in the com
 # Conclusion
 Eris is a great library to build Discord Bots, as it is lightweight and fast! I will be teaching you how to make a `meme` command in my following post. Stay tuned!
 (PS You might have to wait quite a while as I have a lot of homework, and have upcoming National Exams to take.)
+
+Oops. I nearly forgot. The tree of your project folder should now be something like
+```bash
+│   .env
+│   index.js
+│   package-lock.json
+│   package.json
+│
+├───commands
+│       owo.js
+│
+├───events
+│       ready.js
+│
+└───node_modules
+    │   ...
+```
+Take care and goodbye for now!
