@@ -1,3 +1,5 @@
+# Part 1
+
 # Introduction
 Hello there, this sentence will mark the beginning of my first ever article released to the public. In this article, I will be writing how to build a Discord bot with [Eris](https://abal.moe/Eris/) and [Yuuko](https://eritbh.me/yuuko/).
 
@@ -253,3 +255,4 @@ Oops. I nearly forgot. The tree of your project folder should now be something l
     │   ...
 ```
 Take care and goodbye for now!
+I will be putting the final code for all the files in my next post.
