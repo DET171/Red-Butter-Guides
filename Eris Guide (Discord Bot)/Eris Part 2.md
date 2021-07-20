@@ -30,32 +30,32 @@ const path = require('path');
 const dotenv = require('dotenv');
 var env = dotenv.config();
 env = process.env;
- 
+
 const bot = new Client({
     token: env.TOKEN,
     prefix: env.PREFIX,
     ignoreBots: true,
 });
- 
+
 bot.extendContext({
     variableOne: 'Variable number 1!',
 });
 bot.editStatus('dnd'); // edits bot status
- 
+
 bot.on('error', (err) => {
     console.error(err);
 });
- 
+
 bot.globalCommandRequirements = {
     guildOnly: true,
 };
- 
+
 bot
     .addDir(path.join(__dirname, 'commands'))
     .addDir(path.join(__dirname, 'events'))
     .connect();
 ```
-`./package.json` + `./package-lock.json `   
+`./package.json` + `./package-lock.json `
 I will not be showing this, but you should have `yuuko`, `eris`, and `dotenv` installed.
 `./commands/owo.js`
 ```js
@@ -74,9 +74,13 @@ module.exports = new EventListener('ready', ({client}) => {
 That should be all the code for now.
 
 # The `Meme` Command <a name="cmd"></a>
-Now, for the `Meme` command! For this, we will need to get the memes from reddit. For that, we will be using `got` to get the JSON from `https://www.reddit.com/r/memes/random/.json`.    
-
-Here's the code (I will be explaining it later):
+Now, for the `Meme` command! For this, we will need to get the memes from reddit. For that, we will be using `got` to get the JSON from `https://www.reddit.com/r/memes/random/.json`.
+Install `got` first:
+```bash
+npm i got --save
+```
+Create a file in `./commands` and name it `meme.js`.
+Put the following code inside (I will be explaining it later):
 ```js
 const { Command } = require('yuuko');
 const got = require('got');
@@ -111,4 +115,12 @@ module.exports = new Command('meme', (message) => {
 		});
 });
 
+```
+Now start the project by navigating to the root folder of the project and running
+```bash
+node index.js
+```
+or if you have `nodemon` installed
+```bash
+nodemon index.js
 ```
