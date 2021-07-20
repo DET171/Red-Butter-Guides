@@ -124,3 +124,59 @@ or if you have `nodemon` installed
 ```bash
 nodemon index.js
 ```
+Let me break the code up into smaller pieces to explain it.
+```js
+const { Command } = require('yuuko');
+const got = require('got');
+module.exports = new Command('meme', (message) => {
+  // code here
+})
+```
+So, we first import the modules as usual, and create a command as we did before. Easy.
+
+```js
+got('https://www.reddit.com/r/memes/random/.json').then((response) => {
+  // code here
+}).catch(err => {
+            console.error(err);
+});
+```
+Now, we use `got` to get the JSON from reddit (the subreddit `r/memes` actually), and save the response as the `response` variable. Note that we are using Promises here, thus the `.then().catch()` in the code. You can, however, use the `async/await` in ES6.
+
+Good?
+
+```js
+const [list] = JSON.parse(response.body);
+const [post] = list.data.children;
+```
+Now, we parse the response body by using `JSON.parse` (Note: You will get an error if you just use `JSON.parse(response)`), and get the information about the reddit post which we saved inside the `post` variable. Understand? Excellent.
+```js
+const permalink = post.data.permalink;
+const memeUrl = `https://reddit.com${permalink}`;
+const memeImage = post.data.url;
+const memeTitle = post.data.title;
+const memeUpvotes = post.data.ups;
+const memeNumComments = post.data.num_comments;
+```
+Now we save the post url as `memeUrl`, the meme image url as `memeImage`, the meme title as `memeTitle`, the number of meme upvotes as `memeUpvotes`, and the number of comments as `memeNumComments`.
+
+```js
+message.channel.createMessage({
+                embed: {
+                    title: memeTitle,
+                    url: memeUrl,
+                    image: {
+                        url: memeImage,
+                    },
+                    color: 15267908,
+                    footer: {
+                        text: `👍 ${memeUpvotes} 💬 ${memeNumComments}`,
+                    },
+                },
+});
+```
+We then send the embed object. That's the end of it. Easy, right?
+
+
+# Conclusion
+In this post, we used a REST API, and learnt how to send an embed in Eris. For my next post, I will be writing a `whois` command. See you until next time!
