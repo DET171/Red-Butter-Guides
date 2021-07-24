@@ -1,4 +1,4 @@
-# Part 3
+# Part 4
 In this post, I will be teaching you how to write a `guild` command. 
 
 # The `guild` command
