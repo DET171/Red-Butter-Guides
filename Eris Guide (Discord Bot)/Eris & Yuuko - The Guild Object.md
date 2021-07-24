@@ -149,5 +149,5 @@ EZPZ.
 PS tell me in the comments if you have any trouble.
 
 # Conclusion
-Woohoo! We made a `fun` command today, and also accessed the `guild` command. That's about the end of it for today.
+Woohoo! We made a `fun` command today, and also accessed the `guild` object. That's about the end of it for today.
 Take care and goodbye!
