@@ -7,7 +7,6 @@ So, here's the code:
 ```js
 const { Command } = require('yuuko');
 const moment = require('moment');
-const { today } = require('../../utils.js');
 module.exports = new Command(['whois', 'member'], async (message, args, context) => { // eslint-disable-line no-unused-vars
 	if (!args[0]) {
 		return message.channel.createMessage(`${message.author.mention}, apologies! Please specify a particular member!`);
@@ -44,9 +43,6 @@ module.exports = new Command(['whois', 'member'], async (message, args, context)
 					inline: false,
 				},
 			],
-			footer: {
-				text: today,
-			},
 		},
 	});
 });
